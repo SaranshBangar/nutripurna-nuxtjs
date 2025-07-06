@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
+@import "tailwindcss";
+@import "@nuxt/ui";
+@import "@nuxt/ui-pro";
+
+html,
+body {
+  font-family: "Lexend", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow: -moz-hidden-unscrollable;
+}
+
+.lexend {
+  font-family: "Lexend", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
