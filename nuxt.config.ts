@@ -31,7 +31,13 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
-  modules: ["@nuxt/image", "@nuxt/eslint", "@nuxtjs/google-fonts", "@nuxt/ui", "@nuxt/ui-pro"],
+  modules: [
+    "@nuxt/image",
+    "@nuxt/eslint",
+    "@nuxtjs/google-fonts",
+    "@nuxt/ui",
+    "@nuxt/ui-pro",
+  ],
 
   build: {
     transpile: ["oh-vue-icons"],

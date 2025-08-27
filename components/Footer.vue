@@ -37,9 +37,14 @@ const socialLinks = [
         :aria-label="link.name"
         class="flex items-center justify-center size-5 sm:w-10 sm:h-10 rounded-full bg-gray-800/50 hover:bg-gray-700/50 transition-colors"
       >
-        <UIcon :name="link.icon" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 hover:text-white transition-colors" />
+        <UIcon
+          :name="link.icon"
+          class="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 hover:text-white transition-colors"
+        />
       </a>
     </div>
-    <p class="text-center text-xs sm:text-sm text-gray-400">© Nutripurna {{ currentYear }}. All rights reserved.</p>
+    <p class="text-center text-xs sm:text-sm text-gray-400">
+      © Nutripurna {{ currentYear }}. All rights reserved.
+    </p>
   </footer>
 </template>

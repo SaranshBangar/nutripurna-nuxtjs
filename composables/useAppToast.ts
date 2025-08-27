@@ -1,9 +1,12 @@
 export const useAppToast = () => {
-  const showToast = (message: string, type: "success" | "error" | "warning" | "info" = "success") => {
+  const showToast = (
+    message: string,
+    type: "success" | "error" | "warning" | "info" = "success",
+  ) => {
     // Simple implementation - you can enhance this with actual toast UI
     const toastElement = document.createElement("div");
     toastElement.className = `fixed top-4 right-4 z-50 max-w-sm p-4 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out ${getToastStyles(
-      type
+      type,
     )}`;
     toastElement.innerHTML = `
       <div class="flex items-center">

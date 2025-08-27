@@ -12,8 +12,12 @@ const schema = z.object({
     .min(10, "Mobile number must be at least 10 digits")
     .regex(/^\+?[\d\s\-\(\)]+$/, "Invalid mobile number format"),
   preferredCourse: z.object({
-    label: z.string().min(2, "Preferred course label must be at least 2 characters"),
-    value: z.string().min(2, "Preferred course value must be at least 2 characters"),
+    label: z
+      .string()
+      .min(2, "Preferred course label must be at least 2 characters"),
+    value: z
+      .string()
+      .min(2, "Preferred course value must be at least 2 characters"),
   }),
 });
 
@@ -40,10 +44,13 @@ const pending = ref(true);
 const error = ref(null);
 const isSubmitting = ref(false);
 
-const showToast = (message: string, type: "success" | "error" | "warning" | "info" = "success") => {
+const showToast = (
+  message: string,
+  type: "success" | "error" | "warning" | "info" = "success",
+) => {
   const toastElement = document.createElement("div");
   toastElement.className = `fixed top-4 right-4 z-50 max-w-sm p-4 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out ${getToastStyles(
-    type
+    type,
   )}`;
   toastElement.innerHTML = `
     <div class="flex items-center">
@@ -112,11 +119,19 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       preferred_course: event.data.preferredCourse.label,
     };
 
-    const response = await emailjs.send("service_928kf1m", "template_itzqguz", templateParams, "CEj6mMz2uJ4vLL2de");
+    const response = await emailjs.send(
+      "service_928kf1m",
+      "template_itzqguz",
+      templateParams,
+      "CEj6mMz2uJ4vLL2de",
+    );
 
     console.log("Email sent successfully:", response);
 
-    showToast("Thank you for your inquiry. We'll get back to you soon!", "success");
+    showToast(
+      "Thank you for your inquiry. We'll get back to you soon!",
+      "success",
+    );
 
     state.name = undefined;
     state.email = undefined;
@@ -126,38 +141,65 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   } catch (error) {
     console.error("Email sending failed:", error);
 
-    showToast("Sorry, there was an issue sending your message. Please try again or contact us directly.", "error");
+    showToast(
+      "Sorry, there was an issue sending your message. Please try again or contact us directly.",
+      "error",
+    );
   } finally {
     isSubmitting.value = false;
   }
 }
 
 async function onError(event: any) {
-  showToast("Please check the form and fix any errors before submitting.", "error");
+  showToast(
+    "Please check the form and fix any errors before submitting.",
+    "error",
+  );
 }
 </script>
 
 <template>
   <section class="flex flex-col items-center justify-center p-4 md:p-6 lg:p-8">
-    <h1 class="font-bold text-white text-2xl md:text-3xl lg:text-4xl text-center">Contact Us</h1>
+    <h1
+      class="font-bold text-white text-2xl md:text-3xl lg:text-4xl text-center"
+    >
+      Contact Us
+    </h1>
   </section>
 
   <section class="px-4 md:px-6 lg:px-8 max-w-4xl mx-auto">
     <UCard>
-      <UForm :schema="schema" :state="state" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8" @submit="onSubmit" @error="onError">
+      <UForm
+        :schema="schema"
+        :state="state"
+        class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8"
+        @submit="onSubmit"
+        @error="onError"
+      >
         <UFormField label="Full Name" name="name" class="col-span-1">
           <template #label="{ label }">
-            <span class="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            <span
+              class="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               <UIcon name="i-heroicons-user" class="w-4 h-4" />
               {{ label }}
             </span>
           </template>
-          <UInput v-model="state.name" placeholder="Enter your full name" size="lg" icon="i-heroicons-user" :disabled="isSubmitting" class="w-full" />
+          <UInput
+            v-model="state.name"
+            placeholder="Enter your full name"
+            size="lg"
+            icon="i-heroicons-user"
+            :disabled="isSubmitting"
+            class="w-full"
+          />
         </UFormField>
 
         <UFormField label="Email Address" name="email" class="col-span-1">
           <template #label="{ label }">
-            <span class="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            <span
+              class="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               <UIcon name="i-heroicons-envelope" class="w-4 h-4" />
               {{ label }}
             </span>
@@ -175,7 +217,9 @@ async function onError(event: any) {
 
         <UFormField label="Mobile Number" name="mobile" class="col-span-1">
           <template #label="{ label }">
-            <span class="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            <span
+              class="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               <UIcon name="i-heroicons-phone" class="w-4 h-4" />
               {{ label }}
             </span>
@@ -191,9 +235,15 @@ async function onError(event: any) {
           />
         </UFormField>
 
-        <UFormField label="Preferred Course" name="preferredCourse" class="col-span-1">
+        <UFormField
+          label="Preferred Course"
+          name="preferredCourse"
+          class="col-span-1"
+        >
           <template #label="{ label }">
-            <span class="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            <span
+              class="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               <UIcon name="i-heroicons-academic-cap" class="w-4 h-4" />
               {{ label }}
             </span>
@@ -212,7 +262,9 @@ async function onError(event: any) {
           />
         </UFormField>
 
-        <div class="flex justify-center items-center w-full col-span-1 md:col-span-2 mt-4">
+        <div
+          class="flex justify-center items-center w-full col-span-1 md:col-span-2 mt-4"
+        >
           <UButton
             size="lg"
             :loading="isSubmitting"
@@ -231,7 +283,10 @@ async function onError(event: any) {
           class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center"
         >
           <div class="flex items-center gap-2">
-            <UIcon name="i-heroicons-shield-check" class="w-4 h-4 text-green-500" />
+            <UIcon
+              name="i-heroicons-shield-check"
+              class="w-4 h-4 text-green-500"
+            />
             <span>Secure & Private</span>
           </div>
           <div class="flex items-center gap-2">

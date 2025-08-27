@@ -1,6 +1,13 @@
 <template>
   <div class="star-rating">
-    <span v-for="star in totalStars" :key="star" class="star" :class="getStarClass(star)"> ★ </span>
+    <span
+      v-for="star in totalStars"
+      :key="star"
+      class="star"
+      :class="getStarClass(star)"
+    >
+      ★
+    </span>
   </div>
 </template>
 
