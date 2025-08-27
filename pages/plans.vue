@@ -1,6 +1,4 @@
 <script setup lang="ts">
-document.title = "Plans | Nutripurna";
-
 const plans = [
   {
     title: "Weight Management",

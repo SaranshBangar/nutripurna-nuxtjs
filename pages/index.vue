@@ -1,6 +1,4 @@
 <script setup lang="ts">
-document.title = "Home | Nutripurna";
-
 const featured_courses = [
   {
     title: "Weight Management",

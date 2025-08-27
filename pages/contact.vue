@@ -4,8 +4,6 @@ import * as z from "zod";
 import type { FormSubmitEvent } from "@nuxt/ui";
 import emailjs from "@emailjs/browser";
 
-document.title = "Contact | Nutripurna";
-
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
@@ -219,7 +217,7 @@ async function onError(event: any) {
             size="lg"
             :loading="isSubmitting"
             :disabled="isSubmitting"
-            class="font-semibold py-3 px-6 md:px-8 rounded-lg w-full max-w-xs"
+            class="font-semibold py-3 px-6 md:px-8 rounded-lg max-w-xs flex justify-center items-center hover:cursor-pointer"
             icon="i-heroicons-paper-airplane"
           >
             <span v-if="!isSubmitting">Send Message</span>
